@@ -1,0 +1,75 @@
+.zmanim-panel {
+    padding: 20px 16px;
+    font-size: 14px;
+    color: var(--center-channel-color, #2c2c2c);
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.zmanim-panel__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #C9A84C;
+}
+
+.zmanim-panel__star {
+    font-size: 20px;
+    color: #C9A84C;
+}
+
+.zmanim-panel__title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--sidebar-header-bg, #0f2f82);
+}
+
+.zmanim-panel__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+}
+
+.zmanim-panel__table tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.zmanim-panel__label {
+    text-align: left;
+    padding: 8px 8px 8px 0;
+    font-weight: 600;
+    color: #0f2f82;
+    white-space: nowrap;
+    width: 40%;
+}
+
+.zmanim-panel__time {
+    text-align: right;
+    padding: 8px 0 8px 8px;
+}
+
+.zmanim-panel__loading,
+.zmanim-panel__error {
+    color: rgba(0, 0, 0, 0.5);
+    font-style: italic;
+    margin: 16px 0;
+}
+
+.zmanim-panel__footnote {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.45);
+    margin-top: 20px;
+    line-height: 1.5;
+}
+
+.zmanim-panel__link {
+    color: #1543a3;
+    text-decoration: none;
+}
+
+.zmanim-panel__link:hover {
+    text-decoration: underline;
+}

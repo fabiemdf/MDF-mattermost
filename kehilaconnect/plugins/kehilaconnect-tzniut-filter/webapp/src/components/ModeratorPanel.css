@@ -1,0 +1,139 @@
+.mod-panel {
+    padding: 20px 16px;
+    font-size: 14px;
+    color: var(--center-channel-color, #2c2c2c);
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.mod-panel__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #1543a3;
+}
+
+.mod-panel__icon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.mod-panel__title {
+    flex: 1;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f2f82;
+}
+
+.mod-panel__refresh {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #1543a3;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.mod-panel__refresh:hover {
+    background: rgba(21, 67, 163, 0.08);
+}
+
+.mod-panel__status,
+.mod-panel__empty {
+    color: rgba(0, 0, 0, 0.5);
+    font-style: italic;
+    margin: 16px 0;
+    text-align: center;
+}
+
+.mod-panel__error {
+    color: #d24b4e;
+    background: rgba(210, 75, 78, 0.08);
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 8px 0;
+}
+
+.mod-panel__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mod-panel__item {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 10px;
+    background: #fff;
+}
+
+.mod-panel__item-meta {
+    margin-bottom: 10px;
+}
+
+.mod-panel__reason {
+    display: block;
+    font-weight: 600;
+    color: #d24b4e;
+    margin-bottom: 4px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.mod-panel__ids {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.mod-panel__ids code {
+    font-family: monospace;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+.mod-panel__actions {
+    display: flex;
+    gap: 8px;
+}
+
+.mod-panel__btn {
+    flex: 1;
+    padding: 6px 0;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+
+.mod-panel__btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.mod-panel__btn--approve {
+    background: #1543a3;
+    color: #fff;
+}
+
+.mod-panel__btn--approve:hover:not(:disabled) {
+    background: #0f2f82;
+}
+
+.mod-panel__btn--reject {
+    background: #d24b4e;
+    color: #fff;
+}
+
+.mod-panel__btn--reject:hover:not(:disabled) {
+    background: #b03a3d;
+}

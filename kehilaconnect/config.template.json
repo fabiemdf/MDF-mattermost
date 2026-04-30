@@ -1,0 +1,105 @@
+{
+  "_comment": "KehilaConnect — Phase 1 config template. Copy values into your config.json or paste into System Console.",
+
+  "TeamSettings": {
+    "SiteName": "KehilaConnect",
+    "EnableCustomBrand": true,
+    "CustomBrandText": "The private communication platform for our kehila.",
+    "CustomDescriptionText": "Connected. Secure. Frum.",
+    "EnableOpenServer": false,
+    "RestrictCreationToDomains": "",
+    "_note_RestrictCreationToDomains": "Set to your community domain(s) e.g. 'bnaiisrael.org,kehilaconnect.com' to limit signups."
+  },
+
+  "SupportSettings": {
+    "TermsOfServiceLink": "https://kehilaconnect.com/terms",
+    "PrivacyPolicyLink": "https://kehilaconnect.com/privacy",
+    "AboutLink": "https://kehilaconnect.com/about",
+    "HelpLink": "https://kehilaconnect.com/help",
+    "ReportAProblemLink": "https://kehilaconnect.com/report",
+    "SupportEmail": "support@kehilaconnect.com"
+  },
+
+  "NativeAppSettings": {
+    "AppDownloadLink": "https://kehilaconnect.com/download",
+    "AndroidAppDownloadLink": "https://kehilaconnect.com/android",
+    "IosAppDownloadLink": "https://kehilaconnect.com/ios"
+  },
+
+  "ThemeSettings": {
+    "EnableThemeSelection": true,
+    "DefaultTheme": "sapphire",
+    "AllowCustomThemes": true,
+    "AllowedThemes": ["sapphire", "quartz"],
+    "_note_AllowedThemes": "Sapphire = Israeli flag blue (closest built-in to KehilaConnect brand). Quartz = light theme. Remove Denim/Indigo/Onyx to keep brand consistent."
+  },
+
+  "LogSettings": {
+    "EnableDiagnostics": false,
+    "_note_EnableDiagnostics": "Disable telemetry to Mattermost Inc. — required for the Frum Privacy Pledge."
+  },
+
+  "EmailSettings": {
+    "SendEmailNotifications": true,
+    "FeedbackName": "KehilaConnect",
+    "FeedbackEmail": "noreply@kehilaconnect.com",
+    "ReplyToAddress": "support@kehilaconnect.com",
+    "FeedbackOrganization": "KehilaConnect Ltd.",
+    "SendPushNotifications": true,
+    "_note_PushNotificationServer": "Point to your own push proxy once mobile app is rebranded (Phase 6). Until then, Mattermost HPNS works but shows 'Mattermost' in iOS notification tray.",
+    "PushNotificationServer": "https://push.kehilaconnect.com",
+    "PushNotificationContents": "id_loaded"
+  },
+
+  "ServiceSettings": {
+    "SiteURL": "https://app.kehilaconnect.com",
+    "EnableDeveloper": false,
+    "EnableTesting": false,
+    "EnableInsecureOutgoingConnections": false
+  },
+
+  "PluginSettings": {
+    "Enable": true,
+    "EnableUploads": true,
+    "PluginStates": {
+      "com.kehilaconnect.shabbat-mode": {
+        "Enable": true
+      },
+      "com.kehilaconnect.tzniut-filter": {
+        "Enable": true
+      }
+    },
+    "Plugins": {
+      "com.kehilaconnect.shabbat-mode": {
+        "shabbat_candle_offset_minutes": 18,
+        "shabbat_havdalah_offset_minutes": 42,
+        "block_mode": "warn",
+        "default_city": "New York",
+        "hebcal_api_key": ""
+      },
+      "com.kehilaconnect.tzniut-filter": {
+        "blocked_terms": "",
+        "image_scan_mode": "flag",
+        "moderator_channel_id": "",
+        "silent_block": false
+      }
+    }
+  },
+
+  "CustomTermsOfServiceSettings": {
+    "Enabled": true,
+    "ReAcceptancePeriod": 365,
+    "_note": "Enable custom Terms of Service. Create the ToS text via System Console → Compliance → Custom Terms of Service after first login."
+  },
+
+  "_setup_checklist": [
+    "1. Upload your KehilaConnect logo via System Console → Site → Customization → Custom Brand Image",
+    "2. Set SiteURL to your actual domain",
+    "3. Configure SMTP settings under EmailSettings for outbound email",
+    "4. Install both plugin .tar.gz bundles via System Console → Plugin Management → Upload Plugin",
+    "5. Set com.kehilaconnect.tzniut-filter.moderator_channel_id to your moderator channel's ID",
+    "6. Create Custom Terms of Service text via System Console → Compliance",
+    "7. Restrict signups via TeamSettings.RestrictCreationToDomains if desired",
+    "8. Configure LDAP under LdapSettings if integrating with existing directory (Enterprise feature)"
+  ]
+}
