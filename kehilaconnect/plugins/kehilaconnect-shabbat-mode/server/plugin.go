@@ -128,6 +128,14 @@ func (p *ShabbatPlugin) windowForUser(userID string) (*shabbatWindow, error) {
 }
 
 // fetchHebcalWindow calls the HebCal zmanim API and returns the Shabbat window.
+// It delegates to fetchHebcalWindowFromURL with the real HebCal base URL.
+func (p *ShabbatPlugin) fetchHebcalWindow(city string, havdalahOffsetMins int) (*shabbatWindow, error) {
+	return p.fetchHebcalWindowFromURL("https://www.hebcal.com/zmanim", city, havdalahOffsetMins)
+}
+
+// fetchHebcalWindowFromURL is the testable core of fetchHebcalWindow.
+// Accepting the base URL as a parameter lets unit tests inject an httptest
+// server instead of hitting the live HebCal API.
 //
 // Fix #3: city is URL-encoded so spaces ("New York") don't produce a malformed
 // URL — previously http.Get silently failed and Shabbat detection returned
@@ -137,9 +145,10 @@ func (p *ShabbatPlugin) windowForUser(userID string) (*shabbatWindow, error) {
 // (typically 18 min before sunset). The code previously subtracted the
 // configured offset *again*, activating Shabbat 36 min before sunset instead
 // of 18. We now use candleTime directly as shabbatStart without subtracting.
-func (p *ShabbatPlugin) fetchHebcalWindow(city string, havdalahOffsetMins int) (*shabbatWindow, error) {
+func (p *ShabbatPlugin) fetchHebcalWindowFromURL(baseURL, city string, havdalahOffsetMins int) (*shabbatWindow, error) {
 	apiURL := fmt.Sprintf(
-		"https://www.hebcal.com/zmanim?cfg=json&city=%s&date=%s",
+		"%s?cfg=json&city=%s&date=%s",
+		baseURL,
 		url.QueryEscape(city), // fix #3
 		time.Now().Format("2006-01-02"),
 	)

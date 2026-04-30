@@ -97,7 +97,7 @@ func renderMattermostAppMac(rctx request.CTX) MattermostApp {
 		rctx.T("web.error.unsupported_browser.download_the_app"),
 		rctx.T("web.error.unsupported_browser.min_os_version.mac"),
 		rctx.T("web.error.unsupported_browser.download"),
-		"https://mattermost.com/pl/download-apps",
+		"https://kehilaconnect.com/download",
 		rctx.T("web.error.unsupported_browser.install_guide.mac"),
 		"https://docs.mattermost.com/install/desktop.html#mac-os-x-10-9",
 	}
@@ -109,7 +109,7 @@ func renderMattermostAppWindows(rctx request.CTX) MattermostApp {
 		rctx.T("web.error.unsupported_browser.download_the_app"),
 		rctx.T("web.error.unsupported_browser.min_os_version.windows"),
 		rctx.T("web.error.unsupported_browser.download"),
-		"https://mattermost.com/pl/download-apps",
+		"https://kehilaconnect.com/download",
 		rctx.T("web.error.unsupported_browser.install_guide.windows"),
 		"https://docs.mattermost.com/install/desktop.html#windows-10-windows-8-1-windows-7",
 	}
