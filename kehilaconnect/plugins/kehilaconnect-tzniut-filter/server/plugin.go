@@ -195,6 +195,26 @@ func (p *TzniutPlugin) MessagesWillBeConsumed(posts []*model.Post) []*model.Post
 	return posts
 }
 
+// isModerator returns true when the caller is authorized to access the
+// moderation API. Authorization requires either:
+//   - system admin role (PermissionManageSystem), OR
+//   - explicit membership in the configured moderator channel.
+//
+// Fix #6: the previous implementation only checked that the caller was
+// authenticated (non-empty Mattermost-User-Id). Any authenticated user could
+// call /review with approved:false to delete arbitrary posts.
+func (p *TzniutPlugin) isModerator(userID string) bool {
+	if p.API.HasPermissionTo(userID, model.PermissionManageSystem) {
+		return true
+	}
+	_, _, moderatorChannelID, _ := p.pluginConfig()
+	if moderatorChannelID == "" {
+		return false
+	}
+	_, appErr := p.API.GetChannelMember(moderatorChannelID, userID)
+	return appErr == nil
+}
+
 // ServeHTTP provides the moderator dashboard REST API.
 func (p *TzniutPlugin) ServeHTTP(_ *plugin.Context, w http.ResponseWriter, r *http.Request) {
 	switch {
@@ -213,9 +233,12 @@ func (p *TzniutPlugin) handleListFlagged(w http.ResponseWriter, r *http.Request)
 		http.Error(w, "unauthorized", http.StatusUnauthorized)
 		return
 	}
+	// fix #6: gate on moderator role, not just authentication
+	if !p.isModerator(userID) {
+		http.Error(w, "forbidden", http.StatusForbidden)
+		return
+	}
 
-	// In a full implementation this would paginate; for the scaffold we list
-	// the first 100 flagged keys.
 	keys, appErr := p.API.KVList(0, 100)
 	if appErr != nil {
 		http.Error(w, appErr.Error(), http.StatusInternalServerError)
@@ -245,6 +268,11 @@ func (p *TzniutPlugin) handleReview(w http.ResponseWriter, r *http.Request) {
 	userID := r.Header.Get("Mattermost-User-Id")
 	if userID == "" {
 		http.Error(w, "unauthorized", http.StatusUnauthorized)
+		return
+	}
+	// fix #6: gate on moderator role before allowing post deletion
+	if !p.isModerator(userID) {
+		http.Error(w, "forbidden", http.StatusForbidden)
 		return
 	}
 
