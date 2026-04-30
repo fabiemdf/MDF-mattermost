@@ -1,0 +1,66 @@
+{
+  "id": "com.kehilaconnect.shabbat-mode",
+  "name": "Shabbat & Holiday Mode",
+  "description": "Blocks or warns on posts and logins during Shabbat and Yom Tov based on each user's location-based zmanim (halachic times).",
+  "homepage_url": "https://kehilaconnect.com",
+  "support_url": "https://kehilaconnect.com/help",
+  "icon_path": "assets/icon.svg",
+  "version": "1.0.0",
+  "min_server_version": "9.0.0",
+  "server": {
+    "executables": {
+      "linux-amd64": "server/dist/plugin-linux-amd64",
+      "darwin-amd64": "server/dist/plugin-darwin-amd64",
+      "windows-amd64": "server/dist/plugin-windows-amd64.exe"
+    }
+  },
+  "webapp": {
+    "bundle_path": "webapp/dist/main.js"
+  },
+  "settings_schema": {
+    "header": "Configure Shabbat & Holiday Mode to automatically restrict activity during Shabbat and Yom Tov.",
+    "footer": "Times are sourced from the HebCal zmanim API based on each user's stored city/country.",
+    "settings": [
+      {
+        "key": "shabbat_candle_offset_minutes",
+        "display_name": "Candle Lighting Offset (minutes before sunset)",
+        "help_text": "Number of minutes before sunset that Shabbat mode activates. Default is 18.",
+        "type": "number",
+        "default": "18"
+      },
+      {
+        "key": "shabbat_havdalah_offset_minutes",
+        "display_name": "Havdalah Offset (minutes after nightfall)",
+        "help_text": "Number of minutes after nightfall (Tzet HaKochavim) that Shabbat mode deactivates. Default is 42.",
+        "type": "number",
+        "default": "42"
+      },
+      {
+        "key": "block_mode",
+        "display_name": "Block Mode",
+        "help_text": "warn: Show a Shabbat warning but allow the post. block: Silently reject the post. queue: Hold the post and deliver it after Havdalah.",
+        "type": "radio",
+        "options": [
+          {"display_name": "Warn Only", "value": "warn"},
+          {"display_name": "Block Silently", "value": "block"},
+          {"display_name": "Queue for After Shabbat", "value": "queue"}
+        ],
+        "default": "warn"
+      },
+      {
+        "key": "hebcal_api_key",
+        "display_name": "HebCal API Key",
+        "help_text": "Optional API key for the HebCal zmanim service (https://www.hebcal.com). Leave blank to use the free unauthenticated endpoint.",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "key": "default_city",
+        "display_name": "Default City (for users without a stored location)",
+        "help_text": "City name used for zmanim when a user has not set their location. E.g. 'New York', 'Jerusalem', 'London'.",
+        "type": "text",
+        "default": "New York"
+      }
+    ]
+  }
+}

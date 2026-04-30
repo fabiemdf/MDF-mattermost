@@ -48,7 +48,7 @@ func newRandomBase32String(size int) string {
 }
 
 func getIssuerFromURL(uri string) string {
-	issuer := "Mattermost"
+	issuer := "KehilaConnect"
 	siteURL := strings.TrimSpace(uri)
 
 	if siteURL != "" {
