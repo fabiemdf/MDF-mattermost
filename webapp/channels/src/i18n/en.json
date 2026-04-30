@@ -1,7 +1,7 @@
 {
   "about.buildnumber": "Build Number:",
   "about.cloudEdition": "Cloud",
-  "about.copyright": "Copyright 2015 - {currentYear} Mattermost, Inc. All rights reserved",
+  "about.copyright": "Copyright {currentYear} KehilaConnect Ltd. All rights reserved",
   "about.database": "Database:",
   "about.date": "Build Date:",
   "about.dbversion": "Database Schema Version:",

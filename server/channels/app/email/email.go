@@ -79,7 +79,7 @@ func (es *Service) SendEmailChangeVerifyEmail(newUserEmail, locale, siteURL, tok
 	data.Props["VerifyButton"] = T("api.templates.email_change_verify_body.button")
 	data.Props["QuestionTitle"] = T("api.templates.questions_footer.title")
 	data.Props["EmailInfo1"] = T("api.templates.email_us_anytime_at")
-	data.Props["SupportEmail"] = "feedback@mattermost.com"
+	data.Props["SupportEmail"] = "support@kehilaconnect.com"
 	data.Props["FooterV2"] = T("api.templates.email_footer_v2", map[string]any{"CurrentYear": time.Now().Year()})
 
 	body, err := es.templatesContainer.RenderToString("email_change_verify_body", data)
@@ -260,7 +260,7 @@ func (es *Service) SendCloudWelcomeEmail(userEmail, locale, teamInviteID, workSp
 	data.Props["AddAppsInfo"] = T("api.templates.cloud_welcome_email.add_apps_info")
 	data.Props["AddAppsSubInfo"] = T("api.templates.cloud_welcome_email.add_apps_sub_info")
 	data.Props["AppMarketPlace"] = T("api.templates.cloud_welcome_email.app_market_place")
-	data.Props["AppMarketPlaceLink"] = "https://integrations.mattermost.com/"
+	data.Props["AppMarketPlaceLink"] = "https://kehilaconnect.com/integrations"
 	data.Props["DownloadMMInfo"] = T("api.templates.cloud_welcome_email.download_mm_info")
 	data.Props["SignInSubInfo"] = T("api.templates.cloud_welcome_email.signin_sub_info")
 	data.Props["MMApps"] = T("api.templates.cloud_welcome_email.mm_apps")
@@ -268,7 +268,7 @@ func (es *Service) SendCloudWelcomeEmail(userEmail, locale, teamInviteID, workSp
 	if es.config().NativeAppSettings.AppDownloadLink != nil && *es.config().NativeAppSettings.AppDownloadLink != "" {
 		data.Props["DownloadMMAppsLink"] = es.config().NativeAppSettings.AppDownloadLink
 	} else {
-		data.Props["DownloadMMAppsLink"] = "https://mattermost.com/pl/download-apps"
+		data.Props["DownloadMMAppsLink"] = "https://kehilaconnect.com/download"
 	}
 	data.Props["Button"] = T("api.templates.cloud_welcome_email.button")
 	data.Props["GettingStartedQuestions"] = T("api.templates.cloud_welcome_email.start_questions")

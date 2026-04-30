@@ -1,0 +1,59 @@
+{
+  "id": "com.kehilaconnect.tzniut-filter",
+  "name": "Tzniut Content Filter",
+  "description": "Enforces community modesty (tzniut) standards by filtering text content and moderating uploaded images.",
+  "homepage_url": "https://kehilaconnect.com",
+  "support_url": "https://kehilaconnect.com/help",
+  "icon_path": "assets/icon.svg",
+  "version": "1.0.0",
+  "min_server_version": "9.0.0",
+  "server": {
+    "executables": {
+      "linux-amd64": "server/dist/plugin-linux-amd64",
+      "darwin-amd64": "server/dist/plugin-darwin-amd64",
+      "windows-amd64": "server/dist/plugin-windows-amd64.exe"
+    }
+  },
+  "webapp": {
+    "bundle_path": "webapp/dist/main.js"
+  },
+  "settings_schema": {
+    "header": "Configure the Tzniut Content Filter to enforce community standards for text and image content.",
+    "footer": "Flagged content is routed to the configured moderator channel for human review.",
+    "settings": [
+      {
+        "key": "blocked_terms",
+        "display_name": "Blocked Terms (comma-separated)",
+        "help_text": "A comma-separated list of words or phrases to block. Supports basic regex patterns.",
+        "type": "longtext",
+        "default": ""
+      },
+      {
+        "key": "image_scan_mode",
+        "display_name": "Image Scan Mode",
+        "help_text": "off: No image scanning. flag: Send uploaded images to the moderator channel for review. block: Reject all image uploads until reviewed.",
+        "type": "radio",
+        "options": [
+          {"display_name": "Disabled", "value": "off"},
+          {"display_name": "Flag for Admin Review", "value": "flag"},
+          {"display_name": "Block Upload", "value": "block"}
+        ],
+        "default": "flag"
+      },
+      {
+        "key": "moderator_channel_id",
+        "display_name": "Moderator Alert Channel ID",
+        "help_text": "The channel ID where flagged content is reported. The channel must exist and the plugin bot must be a member.",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "key": "silent_block",
+        "display_name": "Silent Block (no user-facing error)",
+        "help_text": "When enabled, blocked messages are silently dropped instead of returning an error to the sender.",
+        "type": "bool",
+        "default": "false"
+      }
+    ]
+  }
+}
